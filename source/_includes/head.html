@@ -15,6 +15,8 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="baidu-site-verification" content="eIOytevbtB" />
 
   {% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' }}{% endif %}{% endcapture %}
   <link rel="canonical" href="{{ canonical }}">
@@ -25,6 +27,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="{{ root_url }}/javascripts/octopress.js" type="text/javascript"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=46080156" charset="UTF-8"></script>
   {% include custom/head.html %}
   {% include google_analytics.html %}
 </head>

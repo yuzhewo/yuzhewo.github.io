@@ -5,7 +5,7 @@
 url: http://yuzhewo.github.io
 title: My Octopress Blog
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: yuzhewo
 simple_search: https://www.google.com/search
 description:
 
@@ -99,3 +99,9 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# duoshuo comments
+duoshuo_comment: true
+
+# Baidu Analytics
+baidu_analytics_tracking: true
