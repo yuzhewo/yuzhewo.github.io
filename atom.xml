@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-10-27T07:56:17.000Z</updated>
+  <updated>2015-10-28T01:39:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[欢迎光临本站]]></title>
-    <link href="http://yoursite.com/2015/10/27/hello-world/"/>
-    <id>http://yoursite.com/2015/10/27/hello-world/</id>
-    <published>2015-10-27T07:56:17.000Z</published>
-    <updated>2015-10-27T07:56:17.000Z</updated>
+    <link href="http://yoursite.com/2015/10/28/hello-world/"/>
+    <id>http://yoursite.com/2015/10/28/hello-world/</id>
+    <published>2015-10-28T01:39:45.000Z</published>
+    <updated>2015-10-28T01:39:45.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -47,7 +47,7 @@
     <link href="http://yoursite.com/2015/10/27/how-to-install-otcopress-on-mac/"/>
     <id>http://yoursite.com/2015/10/27/how-to-install-otcopress-on-mac/</id>
     <published>2015-10-27T05:53:26.000Z</published>
-    <updated>2015-10-27T05:58:48.000Z</updated>
+    <updated>2015-10-27T13:32:35.000Z</updated>
     <content type="html"><![CDATA[<h3 id="环境的配置">环境的配置</h3><p>本地安装Octopress仅需要Git与Ruby两个软件  </p>
 <p>Git环境监测<br><figure class="highlight bash"><figcaption><span>bash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version <span class="number">2.3</span>.<span class="number">2</span> (Apple Git-<span class="number">55</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Ruby环境监测<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruby --version       </span><br><span class="line">ruby <span class="number">2.0</span><span class="number">.0</span>p481 (<span class="number">2014</span>-<span class="number">05</span>-<span class="number">08</span> revision <span class="number">45883</span>) [universal.x86_64-darwin14]</span><br></pre></td></tr></table></figure></p>
@@ -67,7 +67,7 @@
 <p>Git环境监测<br><figure class="highlight bash"><figcaption><span>bash</span></f]]>
     </summary>
     
-      <category term="Mac, Octopress" scheme="http://yoursite.com/tags/Mac-Octopress/"/>
+      <category term="Octopress" scheme="http://yoursite.com/tags/Octopress/"/>
     
   </entry>
   
@@ -76,7 +76,7 @@
     <link href="http://yoursite.com/2015/10/27/what-is-octopress/"/>
     <id>http://yoursite.com/2015/10/27/what-is-octopress/</id>
     <published>2015-10-27T05:51:05.000Z</published>
-    <updated>2015-10-27T06:44:20.000Z</updated>
+    <updated>2015-10-27T13:32:55.000Z</updated>
     <content type="html"><![CDATA[<h3 id="什么是Octopress">什么是Octopress</h3><p>Octopress 是一个基于Jekyll的静态博客站点生成系统，它很大程度上简化了用Jekyll搭建博客的过程。</p>
 <p>相对于WordPress来说优势：</p>
 <blockquote>
@@ -99,6 +99,8 @@
 <p>相对于WordPress来说优势：</p>
 <blockquote]]>
     </summary>
+    
+      <category term="Octopress" scheme="http://yoursite.com/tags/Octopress/"/>
     
   </entry>
   
