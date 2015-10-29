@@ -6,7 +6,7 @@
 <p>解析数据<br>XML 解析器通常情况下会处理XML文档中的所有文本。</p>
 <p>当XML元素被解析的时候，XML元素内部的文本也会被解析:</p>
 <p>&lt; message&gt;This text is also parsed&lt; /message&gt;</p>
-<p>XML解析器这样做的原因是XML元素内部可能还包含了别的元素，象下面的例子，name元素内部包含了first和last两个元素:</p>
+<p>XML解析器这样做的原因是XML元素内部可能还包含了别的元素，像下面的例子，name元素内部包含了first和last两个元素:</p>
 <p>&lt; name&gt;&lt; first&gt;Bill&lt; /first&gt;&lt; last&gt;Gates&lt; /last&gt;&lt; /name&gt;</p>
 <p>解析器会认为上面的代码是这样的:</p>
 <p>&lt; name&gt;<br>&lt; first&gt;Bill&lt; /first&gt;<br>&lt; last&gt;Gates&lt; /last&gt;<br>&lt; /name&gt;</p>
