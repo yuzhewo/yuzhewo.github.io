@@ -515,12 +515,11 @@ pre {
 /* Syntax Highlight*/
 pre,
 .highlight {
-  background: #2d2d2d;
-  margin: 20px 0;
+  background: #f7f7f7;
+  margin: 2px 0;
   padding: 5px;
   overflow: auto;
   font-size: 13px;
-  color: #ccc;
   line-height: 1.6;
   border-radius: 7px; }
 
@@ -544,9 +543,12 @@ pre code {
   padding: 0; }
 
 .highlight pre {
-  border: none;
-  margin: 0;
-  padding: 1px; }
+  padding: 1px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px; }
 
 .highlight table {
   margin: 0;
@@ -558,10 +560,9 @@ pre code {
   padding: 0; }
 
 .highlight figcaption {
-  font-size: 0.85em;
+  font-size: 1em;
   color: #999;
-  line-height: 1em;
-  margin-bottom: 1em; }
+  line-height: 1em; }
 
 .highlight figcaption:before,
 .highlight figcaption:after {
