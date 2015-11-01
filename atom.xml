@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-01T02:46:10.000Z</updated>
+  <updated>2015-11-01T06:30:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2015/11/01/Hexo%E4%B8%BB%E9%A2%98maupassant%E6%B7%BB%E5%8A%A0CNZZ%E7%BB%9F%E8%AE%A1/"/>
     <id>http://yoursite.com/2015/11/01/Hexo主题maupassant添加CNZZ统计/</id>
     <published>2015-11-01T01:55:09.000Z</published>
-    <updated>2015-11-01T02:46:10.000Z</updated>
+    <updated>2015-11-01T06:30:29.000Z</updated>
     <content type="html"><![CDATA[<p>安装好Hexo博客之后，想要给博客加一下统计代码，国内比较流行的统计代码有51la、cnzz、baidu、腾讯统计等，根据使用习惯和功能来看，比较习惯于CNZZ的统计后台使用，所以选择了CNZZ。</p>
 <p>确定好统计代码用CNZZ之后，就要动手添加了，为了让全站页面都被统计到，当然应该把统计代码加到模板中的base页面或者footer页脚。但是网上查到的修改教程都是针对于ejs模板的修改，而maupassant这个主题是基于jade的。</p>
 <p>但是添加模板区块的大致流程是一样的，无外乎以下几个步骤：</p>
