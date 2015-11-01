@@ -323,6 +323,9 @@ pre {
 .hidden1 {
   display: none; }
 
+.analytics {
+  display: none; }
+
 /* back-to-top rocket*/
 #rocket {
   position: fixed;
