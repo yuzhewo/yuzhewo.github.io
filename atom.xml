@@ -3,23 +3,54 @@
   <title><![CDATA[幻城]]></title>
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2015-11-01T06:30:29.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://www.yuzhewo.com/"/>
+  <updated>2015-11-01T07:34:02.000Z</updated>
+  <id>http://www.yuzhewo.com/</id>
   
   <author>
-    <name><![CDATA[John Doe]]></name>
+    <name><![CDATA[yuzhewo]]></name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[开启nginx服务的rewrite_log]]></title>
+    <link href="http://www.yuzhewo.com/2015/11/01/%E5%BC%80%E5%90%AFnginx%E6%9C%8D%E5%8A%A1%E7%9A%84rewrite-log/"/>
+    <id>http://www.yuzhewo.com/2015/11/01/开启nginx服务的rewrite-log/</id>
+    <published>2015-11-01T07:17:59.000Z</published>
+    <updated>2015-11-01T07:34:02.000Z</updated>
+    <content type="html"><![CDATA[<p>在使用nginx服务器时，时常用到nginx的伪静态URL重新功能，由于重新条件太多或者书写条件有问题，导致无法正确匹配，要想排查问题，就需要开启nginx的rewrite_log日志，便于查找问题所在。</p>
+<p>rewrite_log官方介绍如下：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法：rewrite_log <span class="keyword">on</span>|<span class="keyword">off</span>;</span><br><span class="line">默认值：rewrite_log <span class="keyword">off</span>;</span><br><span class="line">作用域：http,server,location,<span class="keyword">if</span></span><br></pre></td></tr></table></figure></p>
+<p>开启或关闭日志输出，并以notice级别打印rewrite处理日志到error log文件。</p>
+<p>使用方法：<br>在需要测试的配置文件的server字段中，添加如下代码：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rewrite_log <span class="function_start"><span class="keyword">on</span></span>；</span><br><span class="line">error_log logs/xxxerror.<span class="command">log</span> notice;</span><br></pre></td></tr></table></figure></p>
+<p>1、将rewrite_log设置开启<br>2、将error_log报警级别设置为notice，因为rewrite匹配信息为notice级别。</p>
+<hr>
+<p>另一方法是直接将日志级别设为debug，此时所有日志都会输出，可用管道符加grep过略，不建议使用此方法。</p>
+<hr>
+<blockquote>
+<p>notice级别报警会生成大量日志，测试完成后记得及时关闭日志输出。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在使用nginx服务器时，时常用到nginx的伪静态URL重新功能，由于重新条件太多或者书写条件有问题，导致无法正确匹配，要想排查问题，就需要开启nginx的rewrite_log日志，便于查找问题所在。</p>
+<p>rewrite_log官方介绍如下：<br><figu]]>
+    </summary>
+    
+      <category term="nginx" scheme="http://www.yuzhewo.com/tags/nginx/"/>
+    
+      <category term="rewrite" scheme="http://www.yuzhewo.com/tags/rewrite/"/>
+    
+      <category term="服务器相关" scheme="http://www.yuzhewo.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hexo主题maupassant添加CNZZ统计]]></title>
-    <link href="http://yoursite.com/2015/11/01/Hexo%E4%B8%BB%E9%A2%98maupassant%E6%B7%BB%E5%8A%A0CNZZ%E7%BB%9F%E8%AE%A1/"/>
-    <id>http://yoursite.com/2015/11/01/Hexo主题maupassant添加CNZZ统计/</id>
+    <link href="http://www.yuzhewo.com/2015/11/01/Hexo%E4%B8%BB%E9%A2%98maupassant%E6%B7%BB%E5%8A%A0CNZZ%E7%BB%9F%E8%AE%A1/"/>
+    <id>http://www.yuzhewo.com/2015/11/01/Hexo主题maupassant添加CNZZ统计/</id>
     <published>2015-11-01T01:55:09.000Z</published>
-    <updated>2015-11-01T06:30:29.000Z</updated>
+    <updated>2015-11-01T07:14:02.000Z</updated>
     <content type="html"><![CDATA[<p>安装好Hexo博客之后，想要给博客加一下统计代码，国内比较流行的统计代码有51la、cnzz、baidu、腾讯统计等，根据使用习惯和功能来看，比较习惯于CNZZ的统计后台使用，所以选择了CNZZ。</p>
 <p>确定好统计代码用CNZZ之后，就要动手添加了，为了让全站页面都被统计到，当然应该把统计代码加到模板中的base页面或者footer页脚。但是网上查到的修改教程都是针对于ejs模板的修改，而maupassant这个主题是基于jade的。</p>
 <p>但是添加模板区块的大致流程是一样的，无外乎以下几个步骤：</p>
@@ -45,20 +76,22 @@
 <p>确定好统计代码用CNZZ之后，就要动手添加了，为了让全站页面都]]>
     </summary>
     
-      <category term="CNZZ" scheme="http://yoursite.com/tags/CNZZ/"/>
+      <category term="CNZZ" scheme="http://www.yuzhewo.com/tags/CNZZ/"/>
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://www.yuzhewo.com/tags/Hexo/"/>
     
-      <category term="maupassant" scheme="http://yoursite.com/tags/maupassant/"/>
+      <category term="maupassant" scheme="http://www.yuzhewo.com/tags/maupassant/"/>
+    
+      <category term="业余爱好" scheme="http://www.yuzhewo.com/categories/%E4%B8%9A%E4%BD%99%E7%88%B1%E5%A5%BD/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[XML中CDATA的作用]]></title>
-    <link href="http://yoursite.com/2015/10/29/XML%E4%B8%ADCDATA%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
-    <id>http://yoursite.com/2015/10/29/XML中CDATA的作用/</id>
+    <link href="http://www.yuzhewo.com/2015/10/29/XML%E4%B8%ADCDATA%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
+    <id>http://www.yuzhewo.com/2015/10/29/XML中CDATA的作用/</id>
     <published>2015-10-29T03:47:47.000Z</published>
-    <updated>2015-10-29T05:24:50.000Z</updated>
+    <updated>2015-11-01T07:14:31.000Z</updated>
     <content type="html"><![CDATA[<p>操作XML文件时，如果允许用户输入内容，例如∶”&lt;”、”&gt;”、”/“、””等，当生成XML时，会破坏了XML结构，使数据中断。</p>
 <p>这就要用XML CDATA</p>
 <p>在XML文档中的所有文本都会被解析器解析。</p>
@@ -98,18 +131,20 @@
 <p>只有在CDATA部件]]>
     </summary>
     
-      <category term="CDATA" scheme="http://yoursite.com/tags/CDATA/"/>
+      <category term="CDATA" scheme="http://www.yuzhewo.com/tags/CDATA/"/>
     
-      <category term="XML" scheme="http://yoursite.com/tags/XML/"/>
+      <category term="XML" scheme="http://www.yuzhewo.com/tags/XML/"/>
+    
+      <category term="编程基础" scheme="http://www.yuzhewo.com/categories/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何在Mac电脑上安装Octopress]]></title>
-    <link href="http://yoursite.com/2015/10/27/%E5%A6%82%E4%BD%95%E5%9C%A8Mac%E7%94%B5%E8%84%91%E4%B8%8A%E5%AE%89%E8%A3%85Octopress/"/>
-    <id>http://yoursite.com/2015/10/27/如何在Mac电脑上安装Octopress/</id>
+    <link href="http://www.yuzhewo.com/2015/10/27/%E5%A6%82%E4%BD%95%E5%9C%A8Mac%E7%94%B5%E8%84%91%E4%B8%8A%E5%AE%89%E8%A3%85Octopress/"/>
+    <id>http://www.yuzhewo.com/2015/10/27/如何在Mac电脑上安装Octopress/</id>
     <published>2015-10-27T05:53:26.000Z</published>
-    <updated>2015-10-29T04:59:21.000Z</updated>
+    <updated>2015-11-01T07:13:57.000Z</updated>
     <content type="html"><![CDATA[<h3 id="环境的配置">环境的配置</h3><p>本地安装Octopress仅需要Git与Ruby两个软件  </p>
 <p>Git环境监测<br><figure class="highlight bash"><figcaption><span>bash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version <span class="number">2.3</span>.<span class="number">2</span> (Apple Git-<span class="number">55</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Ruby环境监测<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruby --version       </span><br><span class="line">ruby <span class="number">2.0</span><span class="number">.0</span>p481 (<span class="number">2014</span>-<span class="number">05</span>-<span class="number">08</span> revision <span class="number">45883</span>) [universal.x86_64-darwin14]</span><br></pre></td></tr></table></figure></p>
@@ -129,18 +164,20 @@
 <p>Git环境监测<br><figure class="highlight bash"><figcaption><span>bash</span></f]]>
     </summary>
     
-      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
+      <category term="Mac" scheme="http://www.yuzhewo.com/tags/Mac/"/>
     
-      <category term="Octopress" scheme="http://yoursite.com/tags/Octopress/"/>
+      <category term="Octopress" scheme="http://www.yuzhewo.com/tags/Octopress/"/>
+    
+      <category term="业余爱好" scheme="http://www.yuzhewo.com/categories/%E4%B8%9A%E4%BD%99%E7%88%B1%E5%A5%BD/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[什么是Octopress]]></title>
-    <link href="http://yoursite.com/2015/10/27/%E4%BB%80%E4%B9%88%E6%98%AFOctopress/"/>
-    <id>http://yoursite.com/2015/10/27/什么是Octopress/</id>
+    <link href="http://www.yuzhewo.com/2015/10/27/%E4%BB%80%E4%B9%88%E6%98%AFOctopress/"/>
+    <id>http://www.yuzhewo.com/2015/10/27/什么是Octopress/</id>
     <published>2015-10-27T05:51:05.000Z</published>
-    <updated>2015-10-29T04:59:25.000Z</updated>
+    <updated>2015-11-01T07:13:52.000Z</updated>
     <content type="html"><![CDATA[<h3 id="什么是Octopress">什么是Octopress</h3><p>Octopress 是一个基于Jekyll的静态博客站点生成系统，它很大程度上简化了用Jekyll搭建博客的过程。</p>
 <p>相对于WordPress来说优势：</p>
 <blockquote>
@@ -164,31 +201,35 @@
 <blockquote]]>
     </summary>
     
-      <category term="Octopress" scheme="http://yoursite.com/tags/Octopress/"/>
+      <category term="Octopress" scheme="http://www.yuzhewo.com/tags/Octopress/"/>
+    
+      <category term="业余爱好" scheme="http://www.yuzhewo.com/categories/%E4%B8%9A%E4%BD%99%E7%88%B1%E5%A5%BD/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[欢迎光临本站]]></title>
-    <link href="http://yoursite.com/2015/10/27/%E6%AC%A2%E8%BF%8E%E5%85%89%E4%B8%B4%E6%9C%AC%E7%AB%99/"/>
-    <id>http://yoursite.com/2015/10/27/欢迎光临本站/</id>
+    <link href="http://www.yuzhewo.com/2015/10/27/%E6%AC%A2%E8%BF%8E%E5%85%89%E4%B8%B4%E6%9C%AC%E7%AB%99/"/>
+    <id>http://www.yuzhewo.com/2015/10/27/欢迎光临本站/</id>
     <published>2015-10-27T05:00:26.000Z</published>
-    <updated>2015-10-29T06:50:50.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <updated>2015-11-01T07:13:40.000Z</updated>
+    <content type="html"><![CDATA[<p>欢迎使用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! 这是这是一篇示例发布。 更多信息请查看<a href="http://hexo.io/docs/" target="_blank" rel="external">官方文档</a>。使用过程中发现任何问题，欢迎反馈<a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">问题反馈</a>或者在项目主要提出问题<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>。</p>
+<h2 id="快速入门">快速入门</h2><h3 id="新建一篇文章">新建一篇文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>更多信息: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="启动预览服务">启动预览服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>更多信息: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="生成静态文件">生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>更多信息: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="部署博客到远端服务器">部署博客到远端服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>更多信息: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    <![CDATA[<p>欢迎使用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! 这是这是一篇示例发布。 更多信息请查看<a href="http://hexo.io/docs/" target="_blank" ]]>
     </summary>
     
-      <category term="Diary" scheme="http://yoursite.com/categories/Diary/"/>
+      <category term="Hexo" scheme="http://www.yuzhewo.com/tags/Hexo/"/>
+    
+      <category term="业余爱好" scheme="http://www.yuzhewo.com/categories/%E4%B8%9A%E4%BD%99%E7%88%B1%E5%A5%BD/"/>
     
   </entry>
   
