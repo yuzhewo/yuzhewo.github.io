@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.yuzhewo.com/"/>
-  <updated>2015-11-03T00:12:29.000Z</updated>
+  <updated>2015-11-03T00:15:28.000Z</updated>
   <id>http://www.yuzhewo.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://www.yuzhewo.com/2015/11/03/POST-HTTP-RAW-POST-DATA%E5%92%8Cphp-input%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>http://www.yuzhewo.com/2015/11/03/POST-HTTP-RAW-POST-DATA和php-input的区别/</id>
     <published>2015-11-02T23:46:33.000Z</published>
-    <updated>2015-11-03T00:12:29.000Z</updated>
+    <updated>2015-11-03T00:15:28.000Z</updated>
     <content type="html"><![CDATA[<h2 id="HTML_&lt;form&lt;_标签的_enctype_属性">HTML &lt;form&lt; 标签的 enctype 属性</h2><p>首先来了解什么是 &lt;form&lt; 标签的 enctype 属性，enctype 属性规定了在发送到服务器之前应该如何对表单数据进行编码，有三种类型：</p>
 <pre>
 |          属性值*                    | *描述*                                                                           
@@ -49,6 +49,14 @@
     <summary type="html">
     <![CDATA[<h2 id="HTML_&lt;form&lt;_标签的_enctype_属性">HTML &lt;form&lt; 标签的 enctype 属性</h2><p>首先来了解什么是 &lt;form&lt; 标签的 enctype 属性，enctype 属性规定了在发送到服务器之]]>
     </summary>
+    
+      <category term="HTTP_RAW_POST_DATA" scheme="http://www.yuzhewo.com/tags/HTTP-RAW-POST-DATA/"/>
+    
+      <category term="php" scheme="http://www.yuzhewo.com/tags/php/"/>
+    
+      <category term="php://input" scheme="http://www.yuzhewo.com/tags/php-input/"/>
+    
+      <category term="编程基础" scheme="http://www.yuzhewo.com/categories/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
