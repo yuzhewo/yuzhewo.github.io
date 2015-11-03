@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.yuzhewo.com/"/>
-  <updated>2015-11-01T07:34:02.000Z</updated>
+  <updated>2015-11-03T00:12:29.000Z</updated>
   <id>http://www.yuzhewo.com/</id>
   
   <author>
@@ -15,11 +15,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[开启nginx服务的rewrite_log]]></title>
-    <link href="http://www.yuzhewo.com/2015/11/01/%E5%BC%80%E5%90%AFnginx%E6%9C%8D%E5%8A%A1%E7%9A%84rewrite-log/"/>
-    <id>http://www.yuzhewo.com/2015/11/01/开启nginx服务的rewrite-log/</id>
+    <title><![CDATA[$_POST $HTTP_RAW_POST_DATA和php://input的区别]]></title>
+    <link href="http://www.yuzhewo.com/2015/11/03/POST-HTTP-RAW-POST-DATA%E5%92%8Cphp-input%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://www.yuzhewo.com/2015/11/03/POST-HTTP-RAW-POST-DATA和php-input的区别/</id>
+    <published>2015-11-02T23:46:33.000Z</published>
+    <updated>2015-11-03T00:12:29.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="HTML_&lt;form&lt;_标签的_enctype_属性">HTML &lt;form&lt; 标签的 enctype 属性</h2><p>首先来了解什么是 &lt;form&lt; 标签的 enctype 属性，enctype 属性规定了在发送到服务器之前应该如何对表单数据进行编码，有三种类型：</p>
+<pre>
+|          属性值*                    | *描述*                                                                           
+| application/x-www-form-urlencoded  | 默认模式，在发送到服务器之前，所有字符都会进行编码（空格转换为 “+” 加号，特殊符号转换为 ASCII HEX 值）
+| multipart/form-data                | 不对字符编码，在使用包含文件上传控件的表单时，必须使用该值。 
+| text/plain                         | 空格转换为 “+” 加号，但不对特殊字符编码。 
+</pre>
+
+
+<p>当在网页提交了一个表单之后，可以使用三种 PHP 方式来获取 Post 数据：$_POST，$HTTP_RAW_POST_DATA，and php://input，有什么区别呢？</p>
+<h2 id="$_POST">$_POST</h2><p>$_POST 是获取表单 POST 过来数据（body部分）的最常用方法，上传的文件信息使用 $_FILES 获取。</p>
+<h2 id="$HTTP_RAW_POST_DATA">$HTTP_RAW_POST_DATA</h2><p>当浏览器从表单发送 POST 请求的时候，默认的 media type 是 “application/x-www-form-urlencoded”，意思就是字段名和值都编码了，每个 key-value 对使用 ‘&amp;’ 字符分隔开，key 和 value 使用 ‘=’ 分开，并且 key 和 value 中的空格都会被替换成 + ，其他特殊字符都会被使用 urlencode 方式进行编码。</p>
+<p>比如下面的 key-value 对：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">name</span>: <span class="string">Jonathan Doe</span></span><br><span class="line"><span class="attribute">age</span>: <span class="string">23</span></span><br><span class="line"><span class="attribute">formula</span>: <span class="string">a + b == 13%!</span></span><br></pre></td></tr></table></figure></p>
+<p>会被编码下面的原始数据：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name=Jonathan+Doe&amp;age=<span class="number">23</span>&amp;formula=a+%<span class="number">2</span>B+b+%<span class="number">3</span>D%<span class="number">3</span>D+<span class="number">13</span>%<span class="number">25</span>%<span class="number">21</span></span><br></pre></td></tr></table></figure></p>
+<p>PHP 会解析这些原始的 POST 数据，并且格式化成数组，填充到 $_POST 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [name] =&gt; Jonathan Doe</span><br><span class="line">    [age] =&gt; <span class="number">23</span></span><br><span class="line">    [formula] =&gt; a + b == <span class="number">13</span>%!</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>$HTTP_RAW_POST_DATA 是 PHP 的一个预定义的变量，用来获取原始的 POST 数据，比如上面的情况下，$HTTP_RAW_POST_DATA 的值就是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name=Jonathan+Doe&amp;age=<span class="number">23</span>&amp;formula=a+%<span class="number">2</span>B+b+%<span class="number">3</span>D%<span class="number">3</span>D+<span class="number">13</span>%<span class="number">25</span>%<span class="number">21</span></span><br></pre></td></tr></table></figure></p>
+<p>但是 $HTTP_RAW_POST_DATA 需要在 php.ini 中设置开启：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">always_populate_raw_post_data = <span class="value"><span class="keyword">On</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>还有一点，$HTTP_RAW_POST_DATA 不支持 enctype=”multipart/form-data” 方式传递的数据，这种情况下，我们要用 $_POST 获取字段的内容，$_FILES 来获取上传的文件信息。</p>
+<h2 id="php://input">php://input</h2><p>由于 $HTTP_RAW_POST_DATA 取决于 pho.ini 设置，有没有更好的方法呢？</p>
+<p>我们可以使用 php://input 来获取原始的 POST 数据，并且 php://input 比 $HTTP_RAW_POST_DATA 更少消耗内存，当然 php://input 和 $HTTP_RAW_POST_DATA 一样，它也不支持 enctype=”multipart/form-data” 方式传递的数据。</p>
+<p>由于 php://input 只是数据流，我们可以使用 file_get_contents() 函数去获取它的内容：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$post</span>_data = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">print_r(<span class="variable">$post</span>_data);</span><br></pre></td></tr></table></figure></p>
+<p>获取到的内容和 $HTTP_RAW_POST_DATA 是一样的。</p>
+<p>原始的 POST 数据有什么用？</p>
+<p>那么原始的 POST 数据有什么用？因为很多时候，接收到不是网页 POST 过来的数据，而是可能通过其他方式 POST 过来的 “text/xml” 格式的数据，这些内容无法解析成 $_POST 数组，这个时候我们就需要原始的 POST 数据进行处理。</p>
+<p>原文地址：<br><a href="http://blog.wpjam.com/m/post-http_raw_post_data-php-input/" target="_blank" rel="external">http://blog.wpjam.com/m/post-http_raw_post_data-php-input/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="HTML_&lt;form&lt;_标签的_enctype_属性">HTML &lt;form&lt; 标签的 enctype 属性</h2><p>首先来了解什么是 &lt;form&lt; 标签的 enctype 属性，enctype 属性规定了在发送到服务器之]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[如何开启nginx服务的rewrite_log]]></title>
+    <link href="http://www.yuzhewo.com/2015/11/01/%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AFnginx%E6%9C%8D%E5%8A%A1%E7%9A%84rewrite-log/"/>
+    <id>http://www.yuzhewo.com/2015/11/01/如何开启nginx服务的rewrite-log/</id>
     <published>2015-11-01T07:17:59.000Z</published>
-    <updated>2015-11-01T07:34:02.000Z</updated>
+    <updated>2015-11-01T07:35:25.000Z</updated>
     <content type="html"><![CDATA[<p>在使用nginx服务器时，时常用到nginx的伪静态URL重新功能，由于重新条件太多或者书写条件有问题，导致无法正确匹配，要想排查问题，就需要开启nginx的rewrite_log日志，便于查找问题所在。</p>
 <p>rewrite_log官方介绍如下：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法：rewrite_log <span class="keyword">on</span>|<span class="keyword">off</span>;</span><br><span class="line">默认值：rewrite_log <span class="keyword">off</span>;</span><br><span class="line">作用域：http,server,location,<span class="keyword">if</span></span><br></pre></td></tr></table></figure></p>
 <p>开启或关闭日志输出，并以notice级别打印rewrite处理日志到error log文件。</p>
@@ -50,7 +88,7 @@
     <link href="http://www.yuzhewo.com/2015/11/01/Hexo%E4%B8%BB%E9%A2%98maupassant%E6%B7%BB%E5%8A%A0CNZZ%E7%BB%9F%E8%AE%A1/"/>
     <id>http://www.yuzhewo.com/2015/11/01/Hexo主题maupassant添加CNZZ统计/</id>
     <published>2015-11-01T01:55:09.000Z</published>
-    <updated>2015-11-01T07:14:02.000Z</updated>
+    <updated>2015-11-01T07:14:09.000Z</updated>
     <content type="html"><![CDATA[<p>安装好Hexo博客之后，想要给博客加一下统计代码，国内比较流行的统计代码有51la、cnzz、baidu、腾讯统计等，根据使用习惯和功能来看，比较习惯于CNZZ的统计后台使用，所以选择了CNZZ。</p>
 <p>确定好统计代码用CNZZ之后，就要动手添加了，为了让全站页面都被统计到，当然应该把统计代码加到模板中的base页面或者footer页脚。但是网上查到的修改教程都是针对于ejs模板的修改，而maupassant这个主题是基于jade的。</p>
 <p>但是添加模板区块的大致流程是一样的，无外乎以下几个步骤：</p>
@@ -91,7 +129,7 @@
     <link href="http://www.yuzhewo.com/2015/10/29/XML%E4%B8%ADCDATA%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
     <id>http://www.yuzhewo.com/2015/10/29/XML中CDATA的作用/</id>
     <published>2015-10-29T03:47:47.000Z</published>
-    <updated>2015-11-01T07:14:31.000Z</updated>
+    <updated>2015-11-01T07:14:50.000Z</updated>
     <content type="html"><![CDATA[<p>操作XML文件时，如果允许用户输入内容，例如∶”&lt;”、”&gt;”、”/“、””等，当生成XML时，会破坏了XML结构，使数据中断。</p>
 <p>这就要用XML CDATA</p>
 <p>在XML文档中的所有文本都会被解析器解析。</p>
@@ -212,7 +250,7 @@
     <link href="http://www.yuzhewo.com/2015/10/27/%E6%AC%A2%E8%BF%8E%E5%85%89%E4%B8%B4%E6%9C%AC%E7%AB%99/"/>
     <id>http://www.yuzhewo.com/2015/10/27/欢迎光临本站/</id>
     <published>2015-10-27T05:00:26.000Z</published>
-    <updated>2015-11-01T07:13:40.000Z</updated>
+    <updated>2015-11-01T07:13:46.000Z</updated>
     <content type="html"><![CDATA[<p>欢迎使用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! 这是这是一篇示例发布。 更多信息请查看<a href="http://hexo.io/docs/" target="_blank" rel="external">官方文档</a>。使用过程中发现任何问题，欢迎反馈<a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">问题反馈</a>或者在项目主要提出问题<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>。</p>
 <h2 id="快速入门">快速入门</h2><h3 id="新建一篇文章">新建一篇文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>更多信息: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>

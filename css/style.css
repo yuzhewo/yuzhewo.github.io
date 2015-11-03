@@ -169,7 +169,8 @@ a:focus {
     padding-top: 20px;
     overflow: hidden; }
     .post .post-content h2, .post .post-content h3 {
-      margin: 1.4em 0 1.1em; }
+      margin: 1.4em 0 1.1em;
+      border-bottom: 1px solid #eee; }
     .post .post-content pre code {
       padding: 0 2em; }
     .post .post-content p {
