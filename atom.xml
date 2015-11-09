@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.yuzhewo.com/"/>
-  <updated>2015-11-05T15:21:47.000Z</updated>
+  <updated>2015-11-09T05:50:35.000Z</updated>
   <id>http://www.yuzhewo.com/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[CentOS下通过yum命令安装mongodb]]></title>
+    <link href="http://www.yuzhewo.com/2015/11/09/CentOS%E4%B8%8B%E9%80%9A%E8%BF%87yum%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85mongodb/"/>
+    <id>http://www.yuzhewo.com/2015/11/09/CentOS下通过yum命令安装mongodb/</id>
+    <published>2015-11-09T03:57:45.000Z</published>
+    <updated>2015-11-09T05:50:35.000Z</updated>
+    <content type="html"><![CDATA[<p>MongoDB中发布了新的稳定版本3.0有很多重大的改进。本教程将帮助您在CentOS、RHEL和Fedora的系统安装3.0.x版本的MongoDB。</p>
+<p>这个版本主要特点：</p>
+<blockquote>
+<p>引入了插件式存储引擎的API，允许第三方开发存储引擎<br>引入了WiredTiger存储引擎的支持。<br>关于更新和插入数据增加了更多的一致性<br>该MMAPv1存储引擎增加了收藏级锁的支持<br>在MongoDB的3.0，副本集最多可以有50个成员。<br>各种增强功能集群。</p>
+</blockquote>
+<h3 id="第1步：添加的MongoDB的yum源信息">第1步：添加的MongoDB的yum源信息</h3><p>按您的要求的MongoDB的版本和系统架构,将下面的yum软件库的配置内容写入/etc/yum.repos.d/mongodb.repo文件。</p>
+<p>在这篇文章中，我们使用MongoDB的3.0版本库。</p>
+<p>MongoDB的3.0.x的源配置</p>
+<p>64位系统：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[MongoDB]</span></span><br><span class="line"><span class="setting">name=<span class="value">MongoDB Repository</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repo.mongodb.org/yum/redhat/<span class="variable">$releasever</span>/mongodb-org/<span class="number">3.0</span>/x<span class="number">86_64</span>/</span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>MongoDB的2.6.X的源配置</p>
+<p>64位系统：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[MongoDB]</span></span><br><span class="line"><span class="setting">name=<span class="value">MongoDB Repository</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://downloads-distro.mongodb.org/repo/redhat/os/x<span class="number">86_64</span>/</span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>32位系统：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[MongoDB]</span></span><br><span class="line"><span class="setting">name=<span class="value">MongoDB Repository</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://downloads-distro.mongodb.org/repo/redhat/os/i686/</span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="第2步：安装MongoDB">第2步：安装MongoDB</h3><p>让我们用yum包管理器安装的MongoDB组织包，它会自动安装所有的依赖关系。要安装的MongoDB任何指定版本可以指定包名，例如：mongodb-org-3.0.0。</p>
+<p>以下命令将安装最新的稳定版本。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># yum install mongodb-org</span></span><br></pre></td></tr></table></figure></p>
+<p>安装存在依赖的包<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Dependencies Resolved</span><br><span class="line">====================================================================== ======</span><br><span class="line"> Package                          Arch      Version        Repository   Size</span><br><span class="line">====================================================================== ======</span><br><span class="line">Installing:                                                            </span><br><span class="line"> mongodb-org                      x86_64    <span class="number">3.0</span><span class="number">.0</span>-<span class="number">1.</span>el7    MongoDB     <span class="number">4.5</span> k</span><br><span class="line">Installing <span class="keyword">for</span> dependencies:                                           </span><br><span class="line"> mongodb-org-mongos               x86_64    <span class="number">3.0</span><span class="number">.0</span>-<span class="number">1.</span>el7    MongoDB     <span class="number">3.8</span> M</span><br><span class="line"> mongodb-org-server               x86_64    <span class="number">3.0</span><span class="number">.0</span>-<span class="number">1.</span>el7    MongoDB     <span class="number">8.1</span> M</span><br><span class="line"> mongodb-org-shell                x86_64    <span class="number">3.0</span><span class="number">.0</span>-<span class="number">1.</span>el7    MongoDB     <span class="number">4.0</span> M</span><br><span class="line"> mongodb-org-tools                x86_64    <span class="number">3.0</span><span class="number">.0</span>-<span class="number">1.</span>el7    MongoDB      <span class="number">31</span> M                                                                    </span><br><span class="line">Transaction Summary                                                    </span><br><span class="line">====================================================================== ======</span><br><span class="line">Install  <span class="number">1</span> Package (+<span class="number">4</span> Dependent packages)</span><br><span class="line"></span><br><span class="line">Total download size: <span class="number">47</span> M</span><br><span class="line">Installed size: <span class="number">147</span> M</span><br><span class="line">Is <span class="keyword">this</span> ok [y/d/N]: y</span><br></pre></td></tr></table></figure></p>
+<h3 id="第3步：运行MongoDB服务">第3步：运行MongoDB服务</h3><p>mongodb-org-server包提供了MongoDB的init启动脚本，可以使用该脚本来启动服务。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># /etc/init.d/mongod restart</span></span><br></pre></td></tr></table></figure></p>
+<p>将MongoDB配置为随系统启动。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># chkconfig --level <span class="number">2345</span> mongod on</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="第4步：检查MongoDB的版本信息并测试安装是否成功">第4步：检查MongoDB的版本信息并测试安装是否成功</h3><p>使用下面的命令来检查安装的MongoDB版本<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@yuzhewo ~]<span class="preprocessor">#  mongo --version</span></span><br><span class="line">MongoDB shell version: <span class="number">3.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
+<p>使用命令行连接的MongoDB和执行检查正常工作的一些测试命令。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@yuzhewo ~]#  mongo</span><br><span class="line">&gt; <span class="keyword">use</span> mydb;</span><br><span class="line">&gt; <span class="keyword">db</span>.<span class="keyword">test</span>.<span class="keyword">save</span>( &#123; a: 1 &#125; )</span><br><span class="line">&gt; <span class="keyword">db</span>.<span class="keyword">test</span>.find()</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"54fc2a4c71b56443ced99ba2"</span>), <span class="string">"a"</span> : 1 &#125;</span><br></pre></td></tr></table></figure></p>
+<p>到此为止系统上已成功安装了MongoDB服务器。</p>
+<p>参考文献：<br><a href="http://docs.mongodb.org/manual/installation/" target="_blank" rel="external">http://docs.mongodb.org/manual/installation/</a><br><a href="http://tecadmin.net/install-mongodb-on-centos-rhel-and-fedora/" target="_blank" rel="external">http://tecadmin.net/install-mongodb-on-centos-rhel-and-fedora/</a><br><a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="external">https://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>MongoDB中发布了新的稳定版本3.0有很多重大的改进。本教程将帮助您在CentOS、RHEL和Fedora的系统安装3.0.x版本的MongoDB。</p>
+<p>这个版本主要特点：</p>
+<blockquote>
+<p>引入了插件式存储引擎的API，允许第三方开发存]]>
+    </summary>
+    
+      <category term="CentOS" scheme="http://www.yuzhewo.com/tags/CentOS/"/>
+    
+      <category term="mongodb" scheme="http://www.yuzhewo.com/tags/mongodb/"/>
+    
+      <category term="yum" scheme="http://www.yuzhewo.com/tags/yum/"/>
+    
+      <category term="服务器相关" scheme="http://www.yuzhewo.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[快速了解和学习Unix/Linux下Shell（一）]]></title>
