@@ -49,7 +49,7 @@
     <link href="http://www.yuzhewo.com/2015/11/12/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3%E5%92%8C%E5%AD%A6%E4%B9%A0Unix-Linux%E4%B8%8BShell%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://www.yuzhewo.com/2015/11/12/快速了解和学习Unix-Linux下Shell（二）/</id>
     <published>2015-11-12T15:45:49.000Z</published>
-    <updated>2015-11-13T02:14:56.000Z</updated>
+    <updated>2015-11-20T10:55:07.000Z</updated>
     <content type="html"><![CDATA[<p>这篇文章是快速了解和学习Unix/Linux下Shell的第二部分，前一部分参考<a href="/2015/11/05/快速了解和学习Unix-Linux下Shell（一）/">快速了解和学习Unix/Linux下Shell（一）</a>。</p>
 <h3 id="一、Shell转义及变量替换">一、Shell转义及变量替换</h3><h4 id="1-转义字符、变量、命令替换">1.转义字符、变量、命令替换</h4><p>如果表达式中包含转义字符，Shell会把转义字符替换成对应的含义。如果表达式中包含被双引号括住的变量，Shell使用变量值替换变量名，如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">a=<span class="number">10</span></span><br><span class="line"><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"Value of a is <span class="variable">$a</span> \n"</span></span><br></pre></td></tr></table></figure>
