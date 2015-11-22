@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.yuzhewo.com/"/>
-  <updated>2015-11-21T09:23:28.000Z</updated>
+  <updated>2015-11-22T03:15:31.000Z</updated>
   <id>http://www.yuzhewo.com/</id>
   
   <author>
@@ -13,6 +13,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[用Gitolite搭建服务器上的Git]]></title>
+    <link href="http://www.yuzhewo.com/2015/11/21/%E7%94%A8Gitolite%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84Git/"/>
+    <id>http://www.yuzhewo.com/2015/11/21/用Gitolite搭建服务器上的Git/</id>
+    <published>2015-11-21T15:53:18.000Z</published>
+    <updated>2015-11-22T03:15:31.000Z</updated>
+    <content type="html"><![CDATA[<p>使用git作为版本控制工具，确实非常流行且好用，常用的git代码服务器有Github还是国内的Gitcafe和OSC都是很不错，可以免费存放一些开源的项目代码，对于私人项目，则需要支付一定的费用。同时对于代码安全隐私的考虑，有时需要搭建自己的私有git服务器，<a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitolite" title="官方wiki" target="_blank" rel="external">官方wiki</a>有介绍,这里在整理一遍自己的搭建过程，供之后参看。</p>
+<h3 id="安装基础依赖包">安装基础依赖包</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># yum install perl openssh git</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加并切换到git用户">添加并切换到git用户</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># useradd git</span></span><br><span class="line"><span class="preprocessor"># su - git</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装gitolite">安装gitolite</h3><p>新建bin目录<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir bin</span><br></pre></td></tr></table></figure></p>
+<p>克隆gitolite程序代码<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="keyword">clone</span> <span class="title">https</span>://github.com/sitaramc/gitolite.git</span><br></pre></td></tr></table></figure></p>
+<p>安装程序到./bin目录下<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ .<span class="regexp">/gitolite/i</span>nstall -to <span class="regexp">/home/gi</span>t<span class="regexp">/bin/</span></span><br></pre></td></tr></table></figure></p>
+<p>当./bin下有可执行文件存在，则说明安装成功<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ls ./bin/</span><br><span class="line">commands  gitolite  gitolite-shell  <span class="class"><span class="keyword">lib</span>  <span class="title">syntactic</span>-<span class="title">sugar</span>  <span class="title">triggers</span>  <span class="title">VERSION</span>  <span class="title">VREF</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="初始化版本库">初始化版本库</h3><p>添加管理员权限公钥,新建公钥文件，名称随意，将本地机器的id_rsa.pub文件中的内容复制到文件中。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">本地命令</span><br><span class="line"><span class="comment"># cat ~/.ssh/id_rsa.pub</span></span><br><span class="line">服务器命令</span><br><span class="line"><span class="variable">$ </span>vim admin.pub</span><br></pre></td></tr></table></figure></p>
+<p>初始化新库<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/gitolite setup -pk ./admin.pub </span><br><span class="line">Initialized empty Git repository in /home/git/repositories/gitolite-admin.git/ </span><br><span class="line">Initialized empty Git repository in /home/git/repositories/testing.git/ </span><br><span class="line"><span class="label">WARNING: </span>/home/git/.ssh missing; creating a new one </span><br><span class="line"><span class="label">WARNING: </span>/home/git/.ssh/authorized<span class="emphasis">_keys missing; creating a new one</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="本地代码拉取测试">本地代码拉取测试</h3><p>服务器上初始化代码库之后，会生成两个库</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ll repositories/</span><br><span class="line">gitolite-admin<span class="class">.git</span> testing.git</span><br></pre></td></tr></table></figure>
+<p>分别是 管理权限配置项目&amp;测试项目</p>
+<p>本地执行clone命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git<span class="variable">@48</span>.<span class="number">33.66</span>.<span class="number">242</span><span class="symbol">:gitolite-admin</span></span><br></pre></td></tr></table></figure></p>
+<p>如果上面命令成功，则服务搭建完成。</p>
+<p>参考地址<br><a href="http://www.jianshu.com/p/a246d7017f70" target="_blank" rel="external">http://www.jianshu.com/p/a246d7017f70</a><br><a href="http://my.oschina.net/u/818147/blog/170566" target="_blank" rel="external">http://my.oschina.net/u/818147/blog/170566</a><br><a href="http://zodiacg.net/2014/05/gitolite_gitweb_nginx/" target="_blank" rel="external">http://zodiacg.net/2014/05/gitolite_gitweb_nginx/</a><br><a href="http://www.ossxp.com/doc/git/gitolite.html" target="_blank" rel="external">http://www.ossxp.com/doc/git/gitolite.html</a><br><a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitolite" target="_blank" rel="external">https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitolite</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>使用git作为版本控制工具，确实非常流行且好用，常用的git代码服务器有Github还是国内的Gitcafe和OSC都是很不错，可以免费存放一些开源的项目代码，对于私人项目，则需要支付一定的费用。同时对于代码安全隐私的考虑，有时需要搭建自己的私有git服务器，<a href]]>
+    </summary>
+    
+      <category term="Git" scheme="http://www.yuzhewo.com/tags/Git/"/>
+    
+      <category term="Gitolite" scheme="http://www.yuzhewo.com/tags/Gitolite/"/>
+    
+      <category term="服务器相关" scheme="http://www.yuzhewo.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hexo程序archive页面数量设置]]></title>
@@ -462,7 +496,7 @@ str     检测字符串是否为空，不为空返回 true。   [ $a ] 返回 tr
     <link href="http://www.yuzhewo.com/2015/11/03/%E5%9C%A8linux%E4%B8%8B%E9%80%9A%E8%BF%87yum%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>http://www.yuzhewo.com/2015/11/03/在linux下通过yum搭建gitlab服务器/</id>
     <published>2015-11-03T14:43:28.000Z</published>
-    <updated>2015-11-04T01:34:24.000Z</updated>
+    <updated>2015-11-22T03:16:23.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>检查您的服务器满足的硬件要求。GitLab 包是专为64位系统。对于32位操作系统，可以考虑替代的安装方法。</p>
 </blockquote>
@@ -482,6 +516,8 @@ str     检测字符串是否为空，不为空返回 true。   [ $a ] 返回 tr
 <p>1.安装并配置必要的依赖</p>
 <p>如果您安装Postfix的发送电子邮件，请在安装过程中选]]>
     </summary>
+    
+      <category term="Git" scheme="http://www.yuzhewo.com/tags/Git/"/>
     
       <category term="gitlab" scheme="http://www.yuzhewo.com/tags/gitlab/"/>
     
