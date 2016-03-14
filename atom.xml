@@ -4,7 +4,7 @@
   <subtitle><![CDATA[虚幻世界中的一员]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.yuzhewo.com/"/>
-  <updated>2015-12-15T14:36:15.000Z</updated>
+  <updated>2016-03-14T09:03:08.000Z</updated>
   <id>http://www.yuzhewo.com/</id>
   
   <author>
@@ -15,12 +15,26 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[什么是Sitmap]]></title>
+    <link href="http://www.yuzhewo.com/2016/03/14/%E4%BB%80%E4%B9%88%E6%98%AFSitmap/"/>
+    <id>http://www.yuzhewo.com/2016/03/14/什么是Sitmap/</id>
+    <published>2016-03-14T09:00:35.000Z</published>
+    <updated>2016-03-14T09:03:08.000Z</updated>
+    <content type="html"><![CDATA[<p>Sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitepmap 形式，就是 XML 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。<br>网络抓取工具通常会通过网站内部和其他网站上的链接查找网页。Sitemap 会提供此数据以便允许支持 Sitemap 的抓取工具抓取 Sitemap 提供的所有网址，并了解使用相关元数据的网址。使用 Sitemap 协议并不能保证网页会包含在搜索引擎中，但可向网络抓取工具提供一些提示以便它们更有效地抓取网站。<br>Sitemap 0.90 是依据创意公用授权-相同方式共享 (Attribution-ShareAlike Creative Commons License) 的条款提供的，并被广泛采用，受 Google、Yahoo! 和 Microsoft 在内的众多厂商的支持。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitepmap 形式，就是 XML 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[vsftpd控制用户禁止访问上级目录]]></title>
     <link href="http://www.yuzhewo.com/2015/12/05/vsftpd%E6%8E%A7%E5%88%B6%E7%94%A8%E6%88%B7%E7%A6%81%E6%AD%A2%E8%AE%BF%E9%97%AE%E4%B8%8A%E7%BA%A7%E7%9B%AE%E5%BD%95/"/>
     <id>http://www.yuzhewo.com/2015/12/05/vsftpd控制用户禁止访问上级目录/</id>
     <published>2015-12-05T09:17:31.000Z</published>
-    <updated>2015-12-15T14:36:15.000Z</updated>
-    <content type="html"><![CDATA[<p>配置完FTP服务器后，用客户端登陆时，你会发现通过返回上级目录，可以一直浏览到根目录下，这是非常危险的行为，是我们平时设置服务器需要避免的状况，FTP账户需要做好权限控制，每个账户做到单一功能最小权限，例如有账户可以上传静态网页，有点账户可以下载备份文件，有的可以修改服务器代码等等……</p>
+    <updated>2015-12-15T14:50:23.000Z</updated>
+    <content type="html"><![CDATA[<p>配置完FTP服务器后，用客户端登陆时，你会发现通过返回上级目录，可以一直浏览到根目录下，这是非常危险的行为，是我们平时设置服务器需要避免的状况，FTP账户需要做好权限控制，每个账户做到单一功能最小权限，例如有账户可以上传静态网页，有的账户可以下载备份文件，有的可以修改服务器代码等等……</p>
 <p>如果想默认设置所有用户都不能离开家目录，那么可以通过配置<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">chroot_local_user=<span class="value"><span class="keyword">YES</span></span></span></span><br></pre></td></tr></table></figure></p>
 <p>可以通过配置对个别用户开启特权，需要添加配置<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">chroot_list_enable=<span class="value"><span class="keyword">YES</span></span></span></span><br><span class="line"><span class="setting">chroot_list_file=<span class="value">/etc/vsftpd.chroot_list</span></span></span><br></pre></td></tr></table></figure></p>
 <p>在/etc/vsftpd.chroot_list中添加特权用户，格式为每个用户一行，在此文件里的用户不受权限约束。</p>
@@ -30,7 +44,7 @@
 <p>上面两种方式，相当于防火墙中的白名单和黑名单，可根据实际情况进行选择配置。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>配置完FTP服务器后，用客户端登陆时，你会发现通过返回上级目录，可以一直浏览到根目录下，这是非常危险的行为，是我们平时设置服务器需要避免的状况，FTP账户需要做好权限控制，每个账户做到单一功能最小权限，例如有账户可以上传静态网页，有点账户可以下载备份文件，有的可以修改服务器]]>
+    <![CDATA[<p>配置完FTP服务器后，用客户端登陆时，你会发现通过返回上级目录，可以一直浏览到根目录下，这是非常危险的行为，是我们平时设置服务器需要避免的状况，FTP账户需要做好权限控制，每个账户做到单一功能最小权限，例如有账户可以上传静态网页，有的账户可以下载备份文件，有的可以修改服务器]]>
     </summary>
     
       <category term="ftp" scheme="http://www.yuzhewo.com/tags/ftp/"/>
